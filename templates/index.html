@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h2>This is content block</h2>
+
+<p>
+    {{ message_from_rust }}
+</p>
+
+<form class="sortable" hx-post="/click" hx-swap="beforebegin" hx-trigger="drag:stop">
+    <div class="htmx-indicator">Updating...</div>
+        {% for el in message_from_rust %}
+        <div class="sorting-element"><input type='hidden' name='item' value="{{ el }}"/>Item {{ el }}</div>
+        {% endfor %}
+</form>
+
+<button hx-post="/click" hx-swap="outerHTML">
+    Click me please!
+</button>
+
+{% endblock %}
