@@ -1,1 +1,7 @@
 /target
+/assets/web/node_modules
+/assets/htmx.js
+
+.idea
+.env
+.keep
