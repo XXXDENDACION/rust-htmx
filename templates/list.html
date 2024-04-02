@@ -1,0 +1,15 @@
+<form
+        class="sortable"
+        hx-post="/reorder"
+        hx-swap="outerHTML"
+        hx-trigger="drag:stop"
+        hx-ext='json-enc'
+>
+    <div class="htmx-indicator">Updating...</div>
+    {% for el in list %}
+    <div class="sorting-element">
+        <input type='hidden' name='item' value="{{ el.id }}"/>
+        Item {{ el.title }}
+    </div>
+    {% endfor %}
+</form>

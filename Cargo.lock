@@ -1254,6 +1254,8 @@ dependencies = [
  "diesel",
  "dotenvy",
  "lazy_static",
+ "rand",
+ "serde",
  "tera",
 ]
 

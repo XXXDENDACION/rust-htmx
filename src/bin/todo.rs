@@ -1,8 +1,8 @@
 use rusthtmx::models::*;
-use rusthtmx::schema::*;
+
 use rusthtmx::database::*;
 use diesel::prelude::*;
-use rusthtmx::*;
+
 
 fn main() {
     use rusthtmx::schema::todo::dsl::*;
