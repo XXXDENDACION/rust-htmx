@@ -10,6 +10,7 @@ async fn main() -> std::io::Result<()>{
             .service(index)
             .service(fs::Files::new("/assets", "./assets"))
             .service(fs::Files::new("/assets", "./assets/web/sortable.js"))
+            .service(fs::Files::new("/styles", "./styles"))
             .service(click)
             .service(reorder)
     })

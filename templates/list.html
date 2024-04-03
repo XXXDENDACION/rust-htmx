@@ -1,15 +1,16 @@
 <form
-        class="sortable"
+        class="sortable box info"
         hx-post="/reorder"
         hx-swap="outerHTML"
         hx-trigger="drag:stop"
         hx-ext='json-enc'
 >
-    <div class="htmx-indicator">Updating...</div>
-    {% for el in list %}
-    <div class="sorting-element">
-        <input type='hidden' name='item' value="{{ el.id }}"/>
-        Item {{ el.title }}
-    </div>
-    {% endfor %}
+
+        <div class="htmx-indicator">Updating...</div>
+        {% for el in list %}
+        <div class="box sorting-element">
+            <input type='hidden' name='item' value="{{ el.id }}"/>
+            <span>Title: <strong>{{ el.title }}</strong></span>
+        </div>
+        {% endfor %}
 </form>

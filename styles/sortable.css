@@ -1,0 +1,25 @@
+.sortable {
+
+}
+
+.sortable_header {
+    /*padding: 10px 15px;*/
+    /*background-color: #212529;*/
+    /*color: white;*/
+    margin: 10px 0 0 0;
+}
+
+
+.sorting-element {
+    --box-bg: lavender;
+    --accent: rebeccapurple;
+}
+
+.draggable-mirror {
+    background-color: violet;
+    width: 593px;
+}
+
+.draggable--over {
+    background-color: antiquewhite;
+}
