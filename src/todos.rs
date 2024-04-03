@@ -12,8 +12,6 @@ pub fn get_random_todo_from_db() -> (i32, String) {
         .load(connection)
         .expect("Error loading wordpairs");
 
-    println!("{:?}", result.len());
-
     let n_words = result.len();
     let random_index = rand::thread_rng().gen_range(0..n_words);
     let item = &result[random_index];
@@ -54,53 +52,17 @@ pub fn reorder_todo(new_orders: Vec<i32>) -> Vec<Todo> {
             result.push(Todo {
                 id: element.id,
                 title: element.title.clone(),
-                pos: *item
+                pos: idx as i32
             });
+
+            diesel::update(todo)
+                .filter(id.eq(element.id))
+                .set(pos.eq(idx as i32))
+                .execute(connection)/**/
+                .expect("Error saving reorder todos!");
         }
     });
 
-    // // todo!("Optimize algorithm");
-    // if let Some(current_index) = todos.iter().position(|x| x.id == todo_id) {
-    //     if current_index as i32 > target_index {
-    //         todos.iter().enumerate().for_each(|(idx, item)| {
-    //             if (idx as i32) > target_index && idx < current_index {
-    //                 result.push(Todo {
-    //                     id: item.id,
-    //                     title: item.title.clone(),
-    //                     pos: item.pos + 1
-    //                 });
-    //             }
-    //
-    //             if idx == current_index {
-    //                 result.push( Todo {
-    //                     id: item.id,
-    //                     title: item.title.clone(),
-    //                     pos: target_index
-    //                 })
-    //             }
-    //         })
-    //     }
-    //
-    //     if (current_index as i32) < target_index {
-    //         todos.iter().enumerate().for_each(|(idx, item)| {
-    //             if idx > current_index && (idx as i32) < target_index {
-    //                 result.push(Todo {
-    //                     id: item.id,
-    //                     title: item.title.clone(),
-    //                     pos: item.pos - 1
-    //                 });
-    //             }
-    //
-    //             if idx == current_index {
-    //                 result.push( Todo {
-    //                     id: item.id,
-    //                     title: item.title.clone(),
-    //                     pos: target_index
-    //                 })
-    //             }
-    //         })
-    //     }
-    // }
 
     result
 }

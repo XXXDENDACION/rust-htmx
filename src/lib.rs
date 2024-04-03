@@ -36,9 +36,6 @@ pub async fn reorder(new_orders: web::Json<FormItem>) -> impl Responder {
     context.insert("list", &result);
 
     let page_content = TEMPLATES.render("list.html", &context).unwrap();
-    println!("{:?}", result);
-
-
 
     HttpResponse::Ok().body(page_content)
 }
@@ -47,7 +44,6 @@ pub async fn reorder(new_orders: web::Json<FormItem>) -> impl Responder {
 pub async fn index() -> impl Responder {
     let mut context = tera::Context::new();
     let res = todos::get_todos();
-    println!("{:?}", res);
     context.insert("list", &res);
     let page_content = TEMPLATES.render("index.html", &context).unwrap();
     HttpResponse::Ok().body(page_content)
